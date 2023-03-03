@@ -3,7 +3,8 @@
 
 #include <vector>
 
-#include "MdtAmtReadout.h"
+#include "EventBuilder.h"
+#include "MdtAmtReadOut.h"
 #include "MdtHit.h"
 
 class EventDecoder
@@ -13,9 +14,11 @@ class EventDecoder
   EventDecoder();
   ~EventDecoder();
 
+  void decodeEvent(Event* event);
+  
  private:
 
-  MdtAmtReadOut m_amtReadout;
+  MdtAmtReadOut m_amtReadOut;
   
   std::vector<MdtHit*> m_eventHits;
   

@@ -1,6 +1,8 @@
 #ifndef MDTHIT_H
 #define MDTHIT_H
 
+#include <cstdint>
+
 class MdtHit
 {
 
@@ -20,8 +22,8 @@ class MdtHit
 
   uint32_t m_tdc;
   uint32_t m_channel;
-  uint32_t m_leadingCounts;
-  uint32_t m_trailingCounts;
+  uint32_t m_tdcCounts;
+  uint32_t m_adcCounts;
   bool     m_isLeading;
 };
 
