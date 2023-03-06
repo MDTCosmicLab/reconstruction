@@ -10,7 +10,8 @@ int main(int argc, char** argv)
 
   StreamReader stream;
   EventDecoder decoder;
-  
+ 
+  while (true) { 
   stream.readBlock(10);
 
   std::cout << "Completed events: " << stream.completedEvents() << std::endl;
@@ -23,6 +24,8 @@ int main(int argc, char** argv)
   for ( auto it : emap ) {
     std::cout << "Decoding event number " << it.first << std:: endl;
     decoder.decodeEvent(it.second);
+  }
+
   }
   
   return 0;

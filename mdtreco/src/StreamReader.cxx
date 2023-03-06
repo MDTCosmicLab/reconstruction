@@ -6,7 +6,7 @@
 StreamReader::StreamReader() 
 {
   
-  m_fileNames={"tdc1.dat","tdc2.dat","tdc3.dat","tdc4.dat","tdc5.dat","tdc6.dat"};
+  m_fileNames={"/home/srosati/data/tdc1.dat","/home/srosati/data/tdc2.dat","/home/srosati/data/tdc3.dat","/home/srosati/data/tdc4.dat","/home/srosati/data/tdc5.dat","/home/srosati/data/tdc6.dat"};
 
   // open the readout streams
   for ( int i=0 ; i<6 ; i++ ) {
@@ -19,11 +19,6 @@ StreamReader::StreamReader()
     }
   }
 
-  // read the first header line
-  //  std::string header;
-  //  std::getline(m_inputFile,header);
-  //  std::getline(m_inputFile,header);
-  // std::cout << "Read header: " << header << std::endl;
 }
 
 StreamReader::~StreamReader()
