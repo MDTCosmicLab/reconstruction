@@ -32,7 +32,6 @@ int main(int argc, char** argv)
       writer.fillTree(it.first,decoder.getEventHits());
     }
 
-    /// fill the ntuple
     
   }
   

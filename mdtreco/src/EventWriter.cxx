@@ -28,6 +28,7 @@ void EventWriter::fillTree(uint32_t evNum , std::vector<MdtHit*>& hits)
   unsigned int nleading=0;
   for ( auto hit : hits ) {
 
+    m_bcid.push_back(hit->bcid());
     m_tdc.push_back(hit->tdc());
     m_channel.push_back(hit->channel());
     m_coarse.push_back(hit->coarse());
@@ -50,6 +51,7 @@ void EventWriter::bookTree()
 
   m_tree->Branch("eventNumber",&m_eventNumber);
   m_tree->Branch("nhits",&m_nhits);
+  m_tree->Branch("bcid",&m_bcid);
   m_tree->Branch("tdc",&m_tdc);
   m_tree->Branch("channel",&m_channel);
   m_tree->Branch("coarse",&m_coarse);
@@ -63,6 +65,7 @@ void EventWriter::clearTree()
 {
   m_eventNumber=0;
   m_nhits=0;
+  m_bcid.clear();
   m_tdc.clear();
   m_channel.clear();
   m_coarse.clear();

@@ -23,13 +23,16 @@ void EventDecoder::decodeEvent(Event* event)
   for ( auto it : *event ) {
 
     uint32_t tdcId = it.first;
-
+    uint32_t bcid =0;
+    
     for ( unsigned int i=0 ; i<it.second.size() ; ++i ) {
 
       uint32_t dw = it.second[i];
       m_amtReadOut.decodeWord(dw);
-      
-      if (m_amtReadOut.is_TSM() ) {
+      if ( m_amtReadOut.is_BOT() ) {
+	bcid = m_amtReadOut.bcId();
+      }
+      else if (m_amtReadOut.is_TSM() ) {
 
 	uint16_t chan   = m_amtReadOut.channel();
 	uint16_t coarse = m_amtReadOut.coarse();
@@ -40,7 +43,7 @@ void EventDecoder::decodeEvent(Event* event)
 		  << " chan: " << chan << " coarse: "
 		  << coarse << " fine: " << fine << " leading: " << leading << std::endl;
 
-	MdtHit* hit = new MdtHit(tdcId,chan,coarse,fine,leading);
+	MdtHit* hit = new MdtHit(bcid,tdcId,chan,coarse,fine,leading);
 	m_eventHits.push_back(hit);
       }
       

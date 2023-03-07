@@ -31,6 +31,7 @@ class EventWriter
   /// tree variables
   uint32_t m_eventNumber;
   uint32_t m_nhits;
+  std::vector<UInt_t> m_bcid;
   std::vector<UInt_t> m_tdc;
   std::vector<UInt_t> m_channel;
   std::vector<UInt_t> m_coarse;

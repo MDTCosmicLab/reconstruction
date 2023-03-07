@@ -8,10 +8,12 @@ class MdtHit
 
  public:
 
-  MdtHit(uint32_t tdc, uint32_t channel, uint32_t coarse, uint32_t fine, bool isLeading);
+  MdtHit(uint32_t bcid, uint32_t tdc, uint32_t channel,
+	 uint32_t coarse, uint32_t fine, bool isLeading);
 
   ~MdtHit();
 
+  uint32_t bcid() {return m_bcid;}
   uint32_t tdc() {return m_tdc;}
   uint32_t channel() {return m_channel;}
   uint32_t coarse() {return m_coarse;}
@@ -23,6 +25,7 @@ class MdtHit
   
  private:
 
+  uint32_t m_bcid;
   uint32_t m_tdc;
   uint32_t m_channel;
   uint32_t m_coarse;

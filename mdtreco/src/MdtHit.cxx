@@ -1,6 +1,8 @@
 #include "MdtHit.h"
 
-MdtHit::MdtHit(uint32_t tdc, uint32_t channel, uint32_t coarse, uint32_t fine, bool isLeading) :
+MdtHit::MdtHit(uint32_t bcid, uint32_t tdc, uint32_t channel,
+	       uint32_t coarse, uint32_t fine, bool isLeading) :
+  m_bcid(bcid),
   m_tdc(tdc),
   m_channel(channel),
   m_coarse(coarse),
