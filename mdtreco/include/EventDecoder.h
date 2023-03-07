@@ -15,6 +15,8 @@ class EventDecoder
   ~EventDecoder();
 
   void decodeEvent(Event* event);
+
+  std::vector<MdtHit*>& getEventHits() {return m_eventHits;}
   
  private:
 

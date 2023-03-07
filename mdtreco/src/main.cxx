@@ -4,28 +4,31 @@
 
 #include "StreamReader.h"
 #include "EventDecoder.h"
+#include "EventWriter.h"
 
 int main(int argc, char** argv)
 {
-
+  
   StreamReader stream;
   EventDecoder decoder;
- 
+  
   while (true) { 
-  stream.readBlock(10);
+    stream.readBlock(10);
+    
+    std::cout << "Completed events: " << stream.completedEvents() << std::endl;
+    
+    /// get the events from the event builder
+    EventMap emap;
+    stream.getEvents(emap);
+    
+    /// loop on the events and decode them
+    for ( auto it : emap ) {
+      std::cout << "Decoding event number " << it.first << std:: endl;
+      decoder.decodeEvent(it.second);
+    }
 
-  std::cout << "Completed events: " << stream.completedEvents() << std::endl;
-
-  /// get the events from the event builder
-  EventMap emap;
-  stream.getEvents(emap);
-
-  /// loop on the events and decode them
-  for ( auto it : emap ) {
-    std::cout << "Decoding event number " << it.first << std:: endl;
-    decoder.decodeEvent(it.second);
-  }
-
+    /// fill the ntuple
+    
   }
   
   return 0;
