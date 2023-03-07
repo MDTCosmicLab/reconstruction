@@ -1,12 +1,47 @@
 #include "EventWriter.h"
 
+#include <iostream>
+
 EventWriter::EventWriter(std::string fileName)
 {
 
+  m_outFile = new TFile(fileName.c_str(),"RECREATE");
+  bookTree();
+  
 }
 
 EventWriter::~EventWriter()
-{ }
+{
+  m_tree->Write();
+
+  m_outFile->Close();
+  delete m_outFile;
+  delete m_tree;
+  
+}
+
+void EventWriter::fillTree(uint32_t evNum , std::vector<MdtHit*>& hits)
+{
+
+  m_eventNumber = evNum;
+  //  std::cout << "Filling the tree with hits: " << hits.size() << std::endl;
+  unsigned int nleading=0;
+  for ( auto hit : hits ) {
+
+    m_tdc.push_back(hit->tdc());
+    m_channel.push_back(hit->channel());
+    m_coarse.push_back(hit->coarse());
+    m_fine.push_back(hit->fine());
+    m_time.push_back(hit->time());
+    m_leading.push_back(hit->isLeading());
+    if (hit->isLeading() ) nleading++;
+  }
+
+  m_nhits=nleading;
+  
+  m_tree->Fill();
+  clearTree();
+}
 
 void EventWriter::bookTree()
 {
@@ -14,7 +49,24 @@ void EventWriter::bookTree()
   m_tree=new TTree("mdt","Analysis of the MDT data");
 
   m_tree->Branch("eventNumber",&m_eventNumber);
-  m_tree->Branch("tdc",&m_channel,"tdc/i");
-  m_tree->Branch("channel",&m_channel,"channel/i");
+  m_tree->Branch("nhits",&m_nhits);
+  m_tree->Branch("tdc",&m_tdc);
+  m_tree->Branch("channel",&m_channel);
+  m_tree->Branch("coarse",&m_coarse);
+  m_tree->Branch("fine",&m_fine);
+  m_tree->Branch("time",&m_time);
+  m_tree->Branch("leading",&m_leading);
 
+}
+
+void EventWriter::clearTree()
+{
+  m_eventNumber=0;
+  m_nhits=0;
+  m_tdc.clear();
+  m_channel.clear();
+  m_coarse.clear();
+  m_fine.clear();
+  m_time.clear();  
+  m_leading.clear();  
 }

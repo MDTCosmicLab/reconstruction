@@ -65,13 +65,13 @@ bool EventBuilder::addTdcFragment(uint32_t evcount, uint32_t tdcId, std::vector<
     /// add the tdc data
     else {
       event->insert(make_pair(tdcId,data));
-      std::cout << "New tdc inserted, number, size " << tdcId << " " << event->size() << std::endl; 
+      //      std::cout << "New tdc inserted, number, size " << tdcId << " " << event->size() << std::endl; 
       // check if the event is completed
       if ( event->size() == 6 ) {
 	/// add the event to the list of completed events
 	m_listOfFullEvents.push_back(evcount);
 
-	std::cout << "New event added, size: " << m_listOfFullEvents.size() << std::endl; 
+	//	std::cout << "New event added, size: " << m_listOfFullEvents.size() << std::endl; 
       }
     }
     
@@ -80,7 +80,7 @@ bool EventBuilder::addTdcFragment(uint32_t evcount, uint32_t tdcId, std::vector<
   else {
     Event* event = new Event();
     event->insert(make_pair(tdcId,data));
-    std::cout << "First tdc inserted, size " << event->size() << std::endl; 
+    //std::cout << "First tdc inserted, size " << event->size() << std::endl; 
     m_eventMap.insert( make_pair(evcount , event ) );
   }
   

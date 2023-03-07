@@ -39,6 +39,9 @@ void EventDecoder::decodeEvent(Event* event)
 	std::cout << ">>> Single Meas: " << std::hex << dw << std::dec
 		  << " chan: " << chan << " coarse: "
 		  << coarse << " fine: " << fine << " leading: " << leading << std::endl;
+
+	MdtHit* hit = new MdtHit(tdcId,chan,coarse,fine,leading);
+	m_eventHits.push_back(hit);
       }
       
     }

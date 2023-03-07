@@ -1,30 +1,35 @@
 #ifndef MDTHIT_H
 #define MDTHIT_H
 
-#include <cstdint>
+#include <stdint.h>
 
 class MdtHit
 {
 
  public:
 
-  MdtHit(uint32_t tdc, uint32_t channel, uint32_t tdcCounts, uint32_t adcCounts, bool isLeading);
+  MdtHit(uint32_t tdc, uint32_t channel, uint32_t coarse, uint32_t fine, bool isLeading);
 
   ~MdtHit();
 
   uint32_t tdc() {return m_tdc;}
   uint32_t channel() {return m_channel;}
-  uint32_t tdcCounts() {return m_tdcCounts;}
-  uint32_t adcCounts() {return m_adcCounts;}
+  uint32_t coarse() {return m_coarse;}
+  uint32_t fine() {return m_fine;}
+
+  float time()   {return m_time;}
+  float charge() {return m_charge;}
   bool isLeading() {return m_isLeading;}
   
  private:
 
   uint32_t m_tdc;
   uint32_t m_channel;
-  uint32_t m_tdcCounts;
-  uint32_t m_adcCounts;
-  bool     m_isLeading;
+  uint32_t m_coarse;
+  uint32_t m_fine;
+  float m_time;
+  float m_charge;
+  bool  m_isLeading;
 };
 
 #endif

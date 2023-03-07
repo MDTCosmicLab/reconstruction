@@ -6,7 +6,8 @@
 StreamReader::StreamReader() 
 {
   
-  m_fileNames={"/home/srosati/data/tdc1.dat","/home/srosati/data/tdc2.dat","/home/srosati/data/tdc3.dat","/home/srosati/data/tdc4.dat","/home/srosati/data/tdc5.dat","/home/srosati/data/tdc6.dat"};
+  m_fileNames={"data_test2/tdc1.dat","data_test2/tdc2.dat","data_test2/tdc3.dat",
+	       "data_test2/tdc4.dat","data_test2/tdc5.dat","data_test2/tdc6.dat"};
 
   // open the readout streams
   for ( int i=0 ; i<6 ; i++ ) {
@@ -50,8 +51,7 @@ bool StreamReader::readBlock(unsigned int nev)
 	tdcData.push_back(dataWord);
 	evcount = m_amtReadOut.ecnt();
 	tdcId = m_amtReadOut.tdcId();
-	std::cout << ">> file number: " << ifile << " tdc number: " << m_amtReadOut.tdcId() << " bcId: " << m_amtReadOut.bcId() <<
-	  " ecnt: " << m_amtReadOut.ecnt() << std::endl;
+	//	std::cout << ">> file number: " << ifile << " tdc number: " << m_amtReadOut.tdcId() << " bcId: " << m_amtReadOut.bcId() << " ecnt: " << m_amtReadOut.ecnt() << std::endl;
 
 	/// read all tdc words up to the EOT
 	readTdcData=true;

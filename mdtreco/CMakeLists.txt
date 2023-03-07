@@ -23,13 +23,12 @@ include_directories(${PROJECT_SOURCE_DIR}/include
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cxx)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.h)
 
-#set(CXX_FLAGS,-O3 -DNDEBUG -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -std=c++17)
 add_compile_options(-std=c++17)
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(mdtreco ${sources} ${headers})
-target_link_libraries(mdtreco ${ROOT_Core_LIBRARY} ${ROOT_Tree_LIBRARY} ${ROOT_Math_Library})
+target_link_libraries(mdtreco ${ROOT_LIBRARIES} )
 
 
 #----------------------------------------------------------------------------
