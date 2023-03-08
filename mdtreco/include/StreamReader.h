@@ -13,7 +13,7 @@ class StreamReader {
 
  public:
 
-  StreamReader();
+  StreamReader(std::string indir);
   
   ~StreamReader();
 

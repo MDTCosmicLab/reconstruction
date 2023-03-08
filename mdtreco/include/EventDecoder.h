@@ -2,7 +2,6 @@
 #define EVENTDECODER_H
 
 #include <vector>
-
 #include "EventBuilder.h"
 #include "MdtAmtReadOut.h"
 #include "MdtHit.h"

@@ -3,11 +3,11 @@
 #include "stdlib.h"
 #include <iostream>
 
-StreamReader::StreamReader() 
+StreamReader::StreamReader(std::string indir) 
 {
   
-  m_fileNames={"data_test2/tdc1.dat","data_test2/tdc2.dat","data_test2/tdc3.dat",
-	       "data_test2/tdc4.dat","data_test2/tdc5.dat","data_test2/tdc6.dat"};
+  m_fileNames={indir+"/tdc1.dat",indir+"/tdc2.dat",indir+"/tdc3.dat",
+	       indir+"/tdc4.dat",indir+"/tdc5.dat",indir+"/tdc6.dat"};
 
   // open the readout streams
   for ( int i=0 ; i<6 ; i++ ) {
@@ -83,11 +83,15 @@ uint32_t StreamReader::getNextWord(std::ifstream* infile)
   uint32_t dataWord=0;
   std::size_t found = 0;
 
-  std::getline(*infile,line);
-  found = line.find("0x"); 
-  word = line.substr(found,found+10);
-  dataWord = (uint32_t)strtol(word.c_str(),NULL,0);      
-
+  if(std::getline(*infile,line)) {
+    found = line.find("0x"); 
+    word = line.substr(found,found+10);
+    dataWord = (uint32_t)strtol(word.c_str(),NULL,0);      
+  }
+  else {
+    dataWord=0xffffffff;
+  }
+  
   return dataWord;
 }
 

@@ -8,10 +8,19 @@
 
 int main(int argc, char** argv)
 {
-  
-  StreamReader stream;
-  EventDecoder decoder;
 
+  std::cout << "input " << argc << " " << *argv[1] << std::endl;
+
+  std::string inputDir;
+  if (argc==2) {
+    //    inputDir="/mdt/data/run"+*argv[1];
+    inputDir="/mdt/data/run9";
+  }
+
+  std::cout << "Reading data from dir: " << inputDir << std::endl;
+
+  StreamReader stream(inputDir);
+  EventDecoder decoder;
   EventWriter writer("out.root");
 
   int i=0;

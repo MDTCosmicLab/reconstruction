@@ -15,8 +15,6 @@ EventWriter::~EventWriter()
   m_tree->Write();
 
   m_outFile->Close();
-  delete m_outFile;
-  delete m_tree;
   
 }
 
