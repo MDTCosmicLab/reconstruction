@@ -9,12 +9,18 @@
 int main(int argc, char** argv)
 {
 
-  std::cout << "input " << argc << " " << *argv[1] << std::endl;
-
-  std::string inputDir;
-  if (argc==2) {
-    //    inputDir="/mdt/data/run"+*argv[1];
-    inputDir="/mdt/data/run9";
+  std::string inputDir="/mdt/data";	
+  if (argc>=3) { 
+    std::string s1(argv[1]);
+    std::string s2(argv[2]);
+    inputDir=s2+"/run"+s1;
+  }    
+  else if (argc==2) {
+    std::string s1(argv[1]);  
+    inputDir="/mdt/data/run"+s1;
+  }
+  else {
+    inputDir=inputDir+"/run1";
   }
 
   std::cout << "Reading data from dir: " << inputDir << std::endl;
