@@ -9,19 +9,27 @@
 int main(int argc, char** argv)
 {
 
-  std::string inputDir="/mdt/data";	
-  if (argc>=3) { 
-    std::string s1(argv[1]);
-    std::string s2(argv[2]);
+  std::string inputDir="/mdt/data";
+  unsigned int nevents=1000000;  
+  if (argc>=4) {
+    nevents = atoi(argv[1]);
+    std::string s1(argv[2]);
+    std::string s2(argv[3]);
     inputDir=s2+"/run"+s1;
   }    
-  else if (argc==2) {
-    std::string s1(argv[1]);  
+  else if (argc==3) {
+    nevents = atoi(argv[1]);
+    std::string s1(argv[2]);  
     inputDir="/mdt/data/run"+s1;
+  }
+  else if (argc==2) {
+    nevents = atoi(argv[1]);
   }
   else {
     inputDir=inputDir+"/run1";
   }
+
+  if (nevents==0) nevents=10000000;
 
   std::cout << "Reading data from dir: " << inputDir << std::endl;
 
@@ -30,11 +38,13 @@ int main(int argc, char** argv)
   EventWriter writer("out.root");
 
   int i=0;
-  while (i<100) {
+  unsigned int nblocks=nevents/10;
+  std::cout << nblocks << std::endl;
+  while (i<nblocks) {
     i++;
     stream.readBlock(10);
     
-    std::cout << "Completed events: " << stream.completedEvents() << std::endl;
+    //std::cout << "Completed events: " << stream.completedEvents() << std::endl;
     
     /// get the events from the event builder
     EventMap emap;
