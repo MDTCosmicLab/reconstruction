@@ -32,6 +32,7 @@ void EventWriter::fillTree(uint32_t evNum , std::vector<MdtHit*>& hits)
     m_coarse.push_back(hit->coarse());
     m_fine.push_back(hit->fine());
     m_time.push_back(hit->time());
+    m_charge.push_back(hit->charge());
     m_leading.push_back(hit->isLeading());
     if (hit->isLeading() ) nleading++;
   }
@@ -55,6 +56,7 @@ void EventWriter::bookTree()
   m_tree->Branch("coarse",&m_coarse);
   m_tree->Branch("fine",&m_fine);
   m_tree->Branch("time",&m_time);
+  m_tree->Branch("charge",&m_charge);
   m_tree->Branch("leading",&m_leading);
 
 }
@@ -69,5 +71,6 @@ void EventWriter::clearTree()
   m_coarse.clear();
   m_fine.clear();
   m_time.clear();  
+  m_charge.clear();  
   m_leading.clear();  
 }

@@ -1,6 +1,7 @@
 #include "EventDecoder.h"
 
 #include <iostream>
+#include <utility>
 
 EventDecoder::EventDecoder()
 {
@@ -15,6 +16,9 @@ EventDecoder::~EventDecoder()
 void EventDecoder::decodeEvent(Event* event)
 {
 
+  // map between the channel number and the leading hit pointer
+  // valid for each tdc
+  std::map<uint16_t,MdtHit*> leadingHitMap;
   /// clear the event
   for ( unsigned int i=0 ; i<m_eventHits.size() ; ++i ) delete m_eventHits[i]; 
   m_eventHits.clear();
@@ -24,7 +28,8 @@ void EventDecoder::decodeEvent(Event* event)
 
     uint32_t tdcId = it.first;
     uint32_t bcid =0;
-    
+    leadingHitMap.clear();
+
     for ( unsigned int i=0 ; i<it.second.size() ; ++i ) {
 
       uint32_t dw = it.second[i];
@@ -45,6 +50,24 @@ void EventDecoder::decodeEvent(Event* event)
 
 	MdtHit* hit = new MdtHit(bcid,tdcId,chan,coarse,fine,leading);
 	m_eventHits.push_back(hit);
+	// if it's a leading edge add it to the map
+	if (leading && leadingHitMap.find(chan)==leadingHitMap.end()) {
+          leadingHitMap.insert(std::make_pair(chan,hit));
+	}
+	// if it's a trailing edge hit look for the corresponding leading and set the charge
+	else if (!leading) {
+	  std::map<uint16_t,MdtHit*>::iterator itHit = leadingHitMap.find(chan); 
+	  if ( itHit!=leadingHitMap.end() ) {
+	    float charge=hit->time()-(*itHit).second->time();
+	    if ( charge<0 ) {
+	      std::cout << ">>> ERROR: found trailing edge with time smaller than leading edge" << std::endl;
+	    }
+	    else {
+	      (*itHit).second->setCharge(charge);
+	    }
+	  }
+	}
+
       }
       
     }

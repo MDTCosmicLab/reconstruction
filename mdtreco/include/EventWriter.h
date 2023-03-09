@@ -38,6 +38,7 @@ class EventWriter
   std::vector<UInt_t> m_fine;
   std::vector<bool> m_leading;
   std::vector<float>    m_time;
+  std::vector<float>    m_charge;
   
 };
 

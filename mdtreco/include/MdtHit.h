@@ -22,7 +22,10 @@ class MdtHit
   float time()   {return m_time;}
   float charge() {return m_charge;}
   bool isLeading() {return m_isLeading;}
-  
+
+  /// set the asd charge 
+  void setCharge(float charge) {m_charge=charge;}
+
  private:
 
   uint32_t m_bcid;

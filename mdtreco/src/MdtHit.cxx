@@ -10,6 +10,8 @@ MdtHit::MdtHit(uint32_t bcid, uint32_t tdc, uint32_t channel,
   m_isLeading(isLeading)
 {
   m_time=coarse*25.+fine*25./32.;
+  /// set initially the charge to zero
+  m_charge=0.0;
 }
 
 MdtHit::~MdtHit()
