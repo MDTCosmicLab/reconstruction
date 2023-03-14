@@ -35,8 +35,11 @@ To run the analysis on a given run:
 ./mdtreco nevents runnumber directory
 
 where:
+
 nevents is the number of events to process ( 0 means all the available events ) 
+
 runnumber is the number of the run to process
+
 directory is the directory where the runs are stored (/mdt/data is the default, used in the lab pc) 
  
 
