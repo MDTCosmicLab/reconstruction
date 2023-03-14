@@ -23,8 +23,11 @@ git clone https://github.com/MDTCosmicLab/reconstruction.git
 Then to compile:
 
 cd mdtreco
+
 cmake .
-make   ( or make -jN where N is the number of threads you want to use for compilation )
+
+make   
+( or make -jN where N is the number of threads you want to use for compilation )
 
 ## How to run the reconstruction
 
