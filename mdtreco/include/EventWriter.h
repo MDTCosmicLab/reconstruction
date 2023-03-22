@@ -36,6 +36,9 @@ class EventWriter
   std::vector<UInt_t> m_channel;
   std::vector<UInt_t> m_coarse;
   std::vector<UInt_t> m_fine;
+  std::vector<UInt_t> m_chamber;
+  std::vector<UInt_t> m_layer;
+  std::vector<UInt_t> m_tube;
   std::vector<bool> m_leading;
   std::vector<float>    m_time;
   std::vector<float>    m_charge;

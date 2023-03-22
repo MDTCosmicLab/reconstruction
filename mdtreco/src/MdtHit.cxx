@@ -18,3 +18,10 @@ MdtHit::~MdtHit()
 {
 
 }
+
+void MdtHit::setIdentifier(uint32_t chamber, uint32_t layer, uint32_t tube)
+{
+  m_chamber=chamber;
+  m_layer=layer;
+  m_tube=tube;
+}

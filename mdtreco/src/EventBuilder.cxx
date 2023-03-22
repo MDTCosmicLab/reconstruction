@@ -59,7 +59,7 @@ bool EventBuilder::addTdcFragment(uint32_t evcount, uint32_t tdcId, std::vector<
     /// check if the tdc is already existing in the map
     Event::const_iterator it_tdc = event->find(tdcId);
     if (it_tdc != (event->end())) {
-      std::cout << "ERROR: the tdc number " << tdcId << " has already been found for event " << evcount << std::endl;
+      //      std::cout << "ERROR: the tdc number " << tdcId << " has already been found for event " << evcount << std::endl;
       return false;
     }
     /// add the tdc data

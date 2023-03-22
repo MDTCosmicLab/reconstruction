@@ -48,7 +48,11 @@ void EventDecoder::decodeEvent(Event* event)
 		  << " chan: " << chan << " coarse: "
 		  << coarse << " fine: " << fine << " leading: " << leading << std::endl;
 
+	uint16_t chamber,layer,tube;
+	m_cabling.getIdentifier(tdcId,chan,chamber,layer,tube);
+	
 	MdtHit* hit = new MdtHit(bcid,tdcId,chan,coarse,fine,leading);
+	hit->setIdentifier(chamber,layer,tube);
 	m_eventHits.push_back(hit);
 	// if it's a leading edge add it to the map
 	if (leading && leadingHitMap.find(chan)==leadingHitMap.end()) {

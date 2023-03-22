@@ -5,11 +5,13 @@
 #include "EventBuilder.h"
 #include "MdtAmtReadOut.h"
 #include "MdtHit.h"
+#include "MdtCabling.h"
 
 class EventDecoder
 {
 
  public:
+
   EventDecoder();
   ~EventDecoder();
 
@@ -20,6 +22,7 @@ class EventDecoder
  private:
 
   MdtAmtReadOut m_amtReadOut;
+  MdtCabling m_cabling;
   
   std::vector<MdtHit*> m_eventHits;
   

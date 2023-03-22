@@ -66,7 +66,7 @@ bool StreamReader::readBlock(unsigned int nev)
       }
       /// add the fragment to the event builder
       if (tdcData.size()>0) {
-	m_eventBuilder.addTdcFragment(evcount,ifile,tdcData);
+	m_eventBuilder.addTdcFragment(evcount,ifile+1,tdcData);
       }
       nread++;	
     }
