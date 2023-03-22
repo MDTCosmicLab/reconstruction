@@ -44,7 +44,7 @@ void EventDecoder::decodeEvent(Event* event)
 	uint16_t fine   = m_amtReadOut.fine();
 	bool leading    = m_amtReadOut.isLeading();
 	
-	std::cout << ">>> Single Meas: " << std::hex << dw << std::dec
+	std::cout << ">>> Single Meas: 0x" << std::hex << dw << std::dec
 		  << " chan: " << chan << " coarse: "
 		  << coarse << " fine: " << fine << " leading: " << leading << std::endl;
 
