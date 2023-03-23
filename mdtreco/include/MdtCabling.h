@@ -2,6 +2,7 @@
 #define MDTCABLING_H
 
 #include <map>
+#include <cstdint>
 
 class MdtCabling
 {

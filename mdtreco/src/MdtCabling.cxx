@@ -53,11 +53,13 @@ bool MdtCabling::getIdentifier(uint16_t tdc, uint16_t channel, uint16_t& chamber
     return false;
   }
 
-  chamber=1+(tdc-1)/2+(tdc-1)%2;
+  chamber=(uint16_t) (tdc)/2+(tdc)%2;
 
-  uint16_t tmp = (int)m_amtMap.find(channel)->second;
+  //  std::cout << tdc << " " << chamber << " " << (tdc-1-(chamber-1)*2) << std::endl;
+  
+  uint16_t tmp = (uint16_t) m_amtMap.find(channel)->second;
   layer = tmp/10;
-  tube = tmp-layer*10;
+  tube = tmp-layer*10 + (tdc-1-(chamber-1)*2)*8;
   
   return true;
 }

@@ -11,22 +11,26 @@ int main(int argc, char** argv)
 
   std::string inputDir="/mdt/data";
   unsigned int nevents=1000000;  
+  std::string runNum;
   if (argc>=4) {
     nevents = atoi(argv[1]);
     std::string s1(argv[2]);
     std::string s2(argv[3]);
     inputDir=s2+"/run"+s1;
+    runNum=s1;
   }    
   else if (argc==3) {
     nevents = atoi(argv[1]);
     std::string s1(argv[2]);  
     inputDir="/mdt/data/run"+s1;
+    runNum=s1;
   }
   else if (argc==2) {
     nevents = atoi(argv[1]);
   }
   else {
     inputDir=inputDir+"/run1";
+    runNum="1"; 
   }
 
   if (nevents==0) nevents=10000000;
@@ -35,7 +39,8 @@ int main(int argc, char** argv)
 
   StreamReader stream(inputDir);
   EventDecoder decoder;
-  EventWriter writer("out.root");
+  std::string outFile="reco_run"+runNum+".root";
+  EventWriter writer(outFile.c_str());
 
   int i=0;
   unsigned int nblocks=nevents/10;
