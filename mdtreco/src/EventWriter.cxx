@@ -22,7 +22,7 @@ void EventWriter::fillTree(uint32_t evNum , std::vector<MdtHit*>& hits)
 {
 
   m_eventNumber = evNum;
-  std::cout << "Filling the tree with hits: " << hits.size() << std::endl;
+  //  std::cout << "Filling the tree with hits: " << hits.size() << std::endl;
   unsigned int nleading=0;
 
   for ( auto hit : hits ) {

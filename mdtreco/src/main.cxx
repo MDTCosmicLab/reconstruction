@@ -45,25 +45,39 @@ int main(int argc, char** argv)
   int i=0;
   unsigned int nblocks=nevents/10;
   std::cout << nblocks << std::endl;
+  unsigned int ievent=0;
+  
   while (i<nblocks) {
     i++;
-    stream.readBlock(10);
-    
-    //std::cout << "Completed events: " << stream.completedEvents() << std::endl;
+    bool readEvents = stream.readBlock(10);
+
+    if ( !readEvents ) {
+      std::cout << ">>>>>>>>>>>>>>>>>>>>> Input is finished: terminating ! nevents processed: " <<  ievent << std::endl;
+      return 0;
+    }
     
     /// get the events from the event builder
     EventMap emap;
     stream.getEvents(emap);
-    
+
     /// loop on the events and decode them
     for ( auto it : emap ) {
-      std::cout << "Decoding event number " << it.first << std:: endl;
+      //      std::cout << "Decoding event number " << it.first << std:: endl;
       decoder.decodeEvent(it.second);
       writer.fillTree(it.first,decoder.getEventHits());
+
+      ievent++;
+
+      if ( ievent%1000==0 ) {
+	std::cout << "Events processed: " << ievent << std::endl;
+      }
+      
     }
 
     
   }
+
+  std::cout << ">>>>>>>>>>>>>>>>>>>>> Terminating ! nevents processed: " <<  ievent << std::endl;
   
   return 0;
 }

@@ -57,6 +57,9 @@ bool StreamReader::readBlock(unsigned int nev)
 	readTdcData=true;
 	while ( readTdcData ) {
 	  dataWord = getNextWord(m_inputFiles[ifile]);
+	  if (dataWord==0xffffffff) {
+	    return false;
+	  }
 	  tdcData.push_back(dataWord);
 	  m_amtReadOut.decodeWord(dataWord);
 	  if (m_amtReadOut.is_EOT()) {

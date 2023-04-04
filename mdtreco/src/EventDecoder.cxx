@@ -44,9 +44,9 @@ void EventDecoder::decodeEvent(Event* event)
 	uint16_t fine   = m_amtReadOut.fine();
 	bool leading    = m_amtReadOut.isLeading();
 	
-	std::cout << ">>> Single Meas: 0x" << std::hex << dw << std::dec
-		  << " chan: " << chan << " coarse: "
-		  << coarse << " fine: " << fine << " leading: " << leading << std::endl;
+	//	std::cout << ">>> Single Meas: 0x" << std::hex << dw << std::dec
+	//		  << " chan: " << chan << " coarse: "
+	//		  << coarse << " fine: " << fine << " leading: " << leading << std::endl;
 
 	uint16_t chamber,layer,tube;
 	m_cabling.getIdentifier(tdcId,chan,chamber,layer,tube);
@@ -64,7 +64,7 @@ void EventDecoder::decodeEvent(Event* event)
 	  if ( itHit!=leadingHitMap.end() ) {
 	    float charge=hit->time()-(*itHit).second->time();
 	    if ( charge<0 ) {
-	      std::cout << ">>> ERROR: found trailing edge with time smaller than leading edge" << std::endl;
+	      //    std::cout << ">>> ERROR: found trailing edge with time smaller than leading edge" << std::endl;
 	    }
 	    else {
 	      (*itHit).second->setCharge(charge);
