@@ -6,34 +6,65 @@ MdtCabling::MdtCabling()
 {
 
   /// initialize the map: first number is the AMT channel, second number is 10*layer+tube
-  
+
+  /// side A mapping
   // first layer
-  add(16,11);
-  add(18,12);
-  add(20,13);
+//  add(16,11);
+//  add(18,12);
+//  add(20,13);
+//  add(22,14);
+//  add(23,15);
+//  add(21,16);
+//  add(19,17);
+//  add(17,18);
+//  // second layer
+//  add(8,21);
+//  add(10,22);
+//  add(12,23);
+//  add(14,24);
+//  add(15,25);
+//  add(13,26);
+//  add(11,27);
+//  add(9,28);
+//  // third layer
+//  add(0,31);
+//  add(2,32);
+//  add(4,33);
+//  add(6,34);
+//  add(7,35);
+//  add(5,36);
+//  add(3,37);
+//  add(1,38);
+
+  /// side C mapping
+  // first layer
+  add(18,11);
+  add(20,12);
+  add(16,13);
   add(22,14);
   add(23,15);
   add(21,16);
   add(19,17);
   add(17,18);
   // second layer
-  add(8,21);
-  add(10,22);
-  add(12,23);
+  add(10,21);
+  add(12,22);
+  add(8,23);
   add(14,24);
   add(15,25);
   add(13,26);
   add(11,27);
   add(9,28);
   // third layer
-  add(0,31);
-  add(2,32);
-  add(4,33);
+  add(2,31);
+  add(4,32);
+  add(0,33);
   add(6,34);
   add(7,35);
   add(5,36);
   add(3,37);
   add(1,38);
+  
   
 }
 
@@ -60,6 +91,8 @@ bool MdtCabling::getIdentifier(uint16_t tdc, uint16_t channel, uint16_t& chamber
   uint16_t tmp = (uint16_t) m_amtMap.find(channel)->second;
   layer = tmp/10;
   tube = tmp-layer*10 + (tdc-1-(chamber-1)*2)*8;
+
+  //  std::cout << tdc << " " << channel << " " << chamber << " " << layer << " " << tube << " " << (tdc-1-(chamber-1)*2) << std::endl;
   
   return true;
 }
