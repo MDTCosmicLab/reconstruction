@@ -22,6 +22,7 @@ int main(int argc, char** argv)
   else if (argc==3) {
     nevents = atoi(argv[1]);
     std::string s1(argv[2]);  
+    //inputDir="/mdt/data/run"+s1;
     inputDir="/mdt/data/run"+s1;
     runNum=s1;
   }
@@ -34,7 +35,7 @@ int main(int argc, char** argv)
   }
 
   if (nevents==0) nevents=10000000;
-
+  unsigned int nperblock=20;
   std::cout << "Reading data from dir: " << inputDir << std::endl;
 
   StreamReader stream(inputDir);
@@ -43,13 +44,14 @@ int main(int argc, char** argv)
   EventWriter writer(outFile.c_str());
 
   int i=0;
-  unsigned int nblocks=nevents/10;
-  std::cout << nblocks << std::endl;
+  unsigned int nblocks=nevents/nperblock;
+  //std::cout << nblocks << std::endl;
   unsigned int ievent=0;
   
   while (i<nblocks) {
     i++;
-    bool readEvents = stream.readBlock(10);
+    //std::cout << ">>>>>>>>>>>>>>>>>>>>>>> Reading a new block of events ! " << std::endl;
+    bool readEvents = stream.readBlock(nperblock);
 
     if ( !readEvents ) {
       std::cout << ">>>>>>>>>>>>>>>>>>>>> Input is finished: terminating ! nevents processed: " <<  ievent << std::endl;
@@ -60,6 +62,7 @@ int main(int argc, char** argv)
     EventMap emap;
     stream.getEvents(emap);
 
+    //std::cout << "#### number of events in the builder: " << emap.size() << std::endl;
     /// loop on the events and decode them
     for ( auto it : emap ) {
       //      std::cout << "Decoding event number " << it.first << std:: endl;
@@ -69,7 +72,7 @@ int main(int argc, char** argv)
       ievent++;
 
       if ( ievent%1000==0 ) {
-	std::cout << "Events processed: " << ievent << std::endl;
+	    std::cout << "Events processed: " << ievent << std::endl;
       }
       
     }

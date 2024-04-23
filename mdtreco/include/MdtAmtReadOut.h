@@ -50,6 +50,9 @@ private:
     static constexpr uint16_t s_TESvalue = 0x6;
     // add the CSM trailer word count for operation with TDC trailer suppression
     static constexpr uint16_t s_TWCvalue = 0x8;
+
+    static constexpr uint16_t s_TWCvalue2 = 0x7;
+
 public:
     // Constructor and destructor
     MdtAmtReadOut();
@@ -71,7 +74,7 @@ public:
     // TDC error status
     bool is_TES() { return (m_wordHeader == s_TESvalue); };
     // trailer word count (actually a CSM word)
-    bool is_TWC() { return (m_wordHeader == s_TWCvalue); };
+    bool is_TWC() { return ((m_wordHeader == s_TWCvalue) || (m_wordHeader == s_TWCvalue2) ); };
     // Methods to retrieve the decoded word content
     uint16_t tdcId() { return m_tdcId; }
     uint16_t ecnt() { return m_ecnt; }
