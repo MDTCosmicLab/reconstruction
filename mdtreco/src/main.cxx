@@ -35,7 +35,7 @@ int main(int argc, char** argv)
   }
 
   if (nevents==0) nevents=10000000;
-  unsigned int nperblock=20;
+  unsigned int nperblock=50;
   std::cout << "Reading data from dir: " << inputDir << std::endl;
 
   StreamReader stream(inputDir);
@@ -50,7 +50,7 @@ int main(int argc, char** argv)
   
   while (i<nblocks) {
     i++;
-    //std::cout << ">>>>>>>>>>>>>>>>>>>>>>> Reading a new block of events ! " << std::endl;
+    std::cout << ">>>>>>>>>>>>>>>>>>>>>>> Reading a new block of events ! " << std::endl;
     bool readEvents = stream.readBlock(nperblock);
 
     if ( !readEvents ) {

@@ -54,7 +54,7 @@ bool StreamReader::readBlock(unsigned int nev)
 	            tdcData.push_back(dataWord);
 	            evcount = m_amtReadOut.ecnt();
 	            tdcId = m_amtReadOut.tdcId();
-    	        //std::cout << ">> found a new BOT file number: " << ifile << " tdc number: " << m_amtReadOut.tdcId() << " bcId: " << m_amtReadOut.bcId() << " ecnt: " << m_amtReadOut.ecnt() << std::endl;
+    	            std::cout << ">> found a new BOT file number: " << ifile << " tdc number: " << m_amtReadOut.tdcId() << " bcId: " << m_amtReadOut.bcId() << " ecnt: " << m_amtReadOut.ecnt() << std::endl;
 
 	            /// read all tdc words up to the EOT
 	            readTdcData=true;
@@ -95,7 +95,7 @@ bool StreamReader::readBlock(unsigned int nev)
             }
             /// add the fragment to the event builder
             //std::cout << "Total fragment size: " << tdcData.size() << std::endl;
-            if (tdcData.size()>3) {
+            if (tdcData.size()>0) {
 	            if (m_eventBuilder.addTdcFragment(evcount,ifile+1,tdcData)) {
                     nread++;
                 }
