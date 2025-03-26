@@ -17,7 +17,7 @@ class StreamReader {
   
   ~StreamReader();
 
-  bool readBlock(unsigned int nev);
+  bool readBlock(unsigned int nev, int* shifts);
 
   unsigned int completedEvents() {return m_eventBuilder.completedEvents();}
 

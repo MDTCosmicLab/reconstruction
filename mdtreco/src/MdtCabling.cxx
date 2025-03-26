@@ -75,12 +75,12 @@ bool MdtCabling::getIdentifier(uint16_t tdc, uint16_t channel, uint16_t& chamber
 {
 
   if ( tdc>6 || tdc<1 ) {
-    std::cout << "ERROR tdc val " << tdc << std::endl;
+    //std::cout << "ERROR tdc val " << tdc << std::endl;
     return false;
   }
 
   if ( channel>23 || channel<0 ) {
-    std::cout << "ERROR channel val " << channel << std::endl;
+    //std::cout << "ERROR channel val " << channel << std::endl;
     return false;
   }
 

@@ -50,8 +50,8 @@ void EventBuilder::getEvents(EventMap& emap)
 bool EventBuilder::addTdcFragment(uint32_t evcount, uint32_t tdcId, std::vector<uint32_t>& data)
 {
 
-    //std::cout << std::endl;
-    //std::cout << "===== Adding TDC " << tdcId << " to event " << " / " << evcount << std::endl;    
+  //std::cout << std::endl;
+  // std::cout << "===== Adding TDC " << tdcId << " to event " << " / " << evcount << std::endl;    
     /// check if the event is already existing in the map
     EventMap::iterator it = m_eventMap.find(evcount);
     if ( it != m_eventMap.end() ) {
@@ -61,7 +61,7 @@ bool EventBuilder::addTdcFragment(uint32_t evcount, uint32_t tdcId, std::vector<
         /// check if the tdc is already existing in the map
         Event::const_iterator it_tdc = event->find(tdcId);
         if (it_tdc != (event->end())) {
-            //std::cout << "ERROR: the tdc number " << tdcId << " has already been found for event " << evcount << std::endl;
+	  //std::cout << "ERROR: the tdc number " << tdcId << " has already been found for event " << evcount << std::endl;
             return false;
         }
     /// add the tdc data
@@ -72,7 +72,7 @@ bool EventBuilder::addTdcFragment(uint32_t evcount, uint32_t tdcId, std::vector<
             if ( event->size() == 6 ) {
 	        /// add the event to the list of completed events
     	        m_listOfFullEvents.push_back(evcount);
-	           // std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  New completed event added, size: " << m_listOfFullEvents.size() << std::endl; 
+		//std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  New completed event added, size: " << m_listOfFullEvents.size() << std::endl; 
             }
         }
     

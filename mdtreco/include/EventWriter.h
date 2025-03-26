@@ -2,6 +2,7 @@
 #define EVENTWRITER_H
 
 #include "TTree.h"
+#include "TH1F.h"
 #include "TFile.h"
 #include <string>
 #include <stdint.h>
@@ -20,6 +21,9 @@ class EventWriter
 
   void fillTree(uint32_t evNum, std::vector<MdtHit*>& hits);
 
+  void fillHistos();
+
+  TH1F* getHisto(unsigned int i, unsigned int j);
   
  private:
 
@@ -42,6 +46,9 @@ class EventWriter
   std::vector<bool> m_leading;
   std::vector<float>    m_time;
   std::vector<float>    m_charge;
+
+  // histos for layers alignment
+  TH1F* m_tubeDiff[9][9];
   
 };
 
