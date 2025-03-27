@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     nevents = atoi(argv[1]);
     std::string s1(argv[2]);
     // inputDir="/mdt/data/run"+s1;
-    inputDir = "/Users/rosati/data/mdt/run" + s1;
+    inputDir = "/mdt/data/run" + s1;
     runNum = s1;
   }
   else if (argc == 2)

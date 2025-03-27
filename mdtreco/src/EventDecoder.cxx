@@ -72,7 +72,7 @@ void EventDecoder::decodeEvent(Event *event)
             float charge = hit->time() - (*itHit).second->time();
             if (charge < 0)
             {
-                    std::cout << ">>> ERROR: found trailing edge with time smaller than leading edge" << std::endl;
+              //      std::cout << ">>> ERROR: found trailing edge with time smaller than leading edge" << std::endl;
             }
             else
             {
