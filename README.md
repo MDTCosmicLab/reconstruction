@@ -41,6 +41,9 @@ nevents is the number of events to process ( 0 means all the available events )
 runnumber is the number of the run to process
 
 directory is the directory where the runs are stored (/mdt/data is the default, used in the lab pc) 
+
+Specify whether the run is noise or cosmic ( default is cosmic ). This depends on the trigger you used to take the data for the run.
+
  
 
  
