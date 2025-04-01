@@ -17,7 +17,7 @@ int main(int argc, char **argv)
   std::string inputDir = "/mdt/data";
   unsigned int nevents = 1000000;
   std::string runNum;
-  std::string runType = "noise";
+  std::string runType = "default";
   if (argc >= 4)
   {
     nevents = atoi(argv[1]);
@@ -55,15 +55,15 @@ int main(int argc, char **argv)
   float bestRMS[6] = {999., 999., 999., 999., 999., 999.};
 
   /// get an input from the keyboard
-  std::string input;
-  std::cout << "Enter the run type (noise/cosmic): ";
-  std::cin >> input;
-  if (input == "cosmic")
-  {
-    runType = "cosmic";
-  }
+//  std::string input;
+//  std::cout << "Enter the run type (noise/cosmic): ";
+//  std::cin >> input;
+//  if (input == "cosmic")
+//  {
+//    runType = "cosmic";
+//  }
 
-  if (runType == "cosmic")
+  if (runType == "realign")
   {
     std::cout << "Please wait...." << std::endl;
     for (unsigned int itdc = 0; itdc < 6; ++itdc)
@@ -142,15 +142,15 @@ int main(int argc, char **argv)
     bestShifts[4] = 0;
     bestShifts[5] = 0;
   }
-  for (unsigned int i = 0; i < 6; i++)
-  {
-    std::cout << bestShifts[i] << std::endl;
-  }
+  //for (unsigned int i = 0; i < 6; i++)
+  //{
+  //  std::cout << bestShifts[i] << std::endl;
+  //}
 
-  std::cout << "============================================================" << std::endl;
+  //std::cout << "============================================================" << std::endl;
   int i = 0;
   unsigned int nblocks = nevents / nperblock;
-  std::cout << nblocks << std::endl;
+  //std::cout << nblocks << std::endl;
   unsigned int ievent = 0;
   StreamReader stream(inputDir);
   EventDecoder decoder;
